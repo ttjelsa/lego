@@ -1,7 +1,7 @@
 from django.core.cache import cache
+from structlog import get_logger
 
 from lego.utils.content_types import string_to_model_cls
-from structlog import get_logger
 
 from . import attr_renderers
 
@@ -31,7 +31,10 @@ class AttrCache:
         "restricted.restrictedmail": attr_renderers.render_restricted_mail,
     }
 
-    RELATED_FIELDS = {"meetings.meetinginvitation": ["meeting"]}
+    RELATED_FIELDS = {
+        "meetings.meetinginvitation": ["meeting"],
+        "notifications.announcement": ["from_group"],
+    }
 
     def lookup_cache(self, content_strings):
         """

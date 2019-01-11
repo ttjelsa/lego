@@ -32,7 +32,15 @@ def render_article(article):
 
 
 def render_announcement(announcement):
-    return {"id": announcement.id, "message": announcement.message}
+    return {
+        "id": announcement.id,
+        "message": announcement.message,
+        "from_group": {
+            "id": announcement.from_group.id,
+            "name": announcement.from_group.name,
+            "type": announcement.from_group.type,
+        },
+    }
 
 
 def render_gallery_picture(gallery_picture):
